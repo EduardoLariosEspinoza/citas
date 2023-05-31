@@ -12,6 +12,7 @@ $array = [];
 $array2 = [];
 $numero_cuenta = json_decode($_POST['numero_cuenta']);
 
+
 $sql = 'SELECT * FROM citas';
 
 $result = $conn->query($sql);
@@ -33,13 +34,14 @@ for ($i = 0; $i < sizeof($result); $i++) {
   $result[$i]['hora'] = openssl_decrypt($result[$i]['hora'], "AES-256-CBC", "secreto", OPENSSL_RAW_DATA, $result[$i]['iv']);
   $result[$i]['sintomas'] = openssl_decrypt($result[$i]['sintomas'], "AES-256-CBC", "secreto", OPENSSL_RAW_DATA, $result[$i]['iv']);
 
+  $array["id_cita"] = $result[$i]['id_cita'];
   $array["mascota"] = $result[$i]['mascota'];
   $array["propietario"] = $result[$i]['propietario'];
   $array["telefono"] = $result[$i]['telefono'];
   $array["fecha"] = $result[$i]['fecha'];
   $array["hora"] = $result[$i]['hora'];
   $array["sintomas"] = $result[$i]['sintomas'];
+  $array2[$i] = $array;
 }
 
-$array2[0] = $array;
 echo json_encode($array2);

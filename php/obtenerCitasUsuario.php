@@ -33,6 +33,7 @@ for ($i = 0; $i < sizeof($result); $i++) {
   $result[$i]['hora'] = openssl_decrypt($result[$i]['hora'], "AES-256-CBC", "secreto", OPENSSL_RAW_DATA, $result[$i]['iv']);
   $result[$i]['sintomas'] = openssl_decrypt($result[$i]['sintomas'], "AES-256-CBC", "secreto", OPENSSL_RAW_DATA, $result[$i]['iv']);
 
+  $array["id_cita"] = $result[$i]['id_cita'];
   $array["mascota"] = $result[$i]['mascota'];
   $array["propietario"] = $result[$i]['propietario'];
   $array["telefono"] = $result[$i]['telefono'];

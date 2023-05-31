@@ -21,7 +21,6 @@ class Citas {
 
   agregarCita(cita) {
     this.citas = [...this.citas, cita];
-    //console.log(this.citas);
   }
 
   eliminarCita(id) {
@@ -31,7 +30,7 @@ class Citas {
   }
 
   editarCita(citaActualizada) {
-    // Asi lo hice yo
+    // Primer intento
     /* this.citas = this.citas.filter((cita) => cita.id !== citaActualizada.id);
     this.citas = [...this.citas, citaActualizada]; */
 
@@ -267,9 +266,7 @@ function subirCita(cita) {
     url: "https://sistemas.cruzperez.com/elarios12/padron/AdministrarCitas/php/recibirYEnviar.php",
     type: "POST",
     data: { mascota: dataCita },
-    success: function (response) {
-      console.log(response);
-    },
+    success: function (response) {},
   });
 }
 
@@ -294,7 +291,6 @@ function obtenerCitas() {
       data: { numero_cuenta: cuenta },
       success: function (response) {
         const citas = JSON.parse(response);
-        console.log(citas);
         citas.forEach((cita) => {
           administrarCitas.agregarCita(cita);
         });
